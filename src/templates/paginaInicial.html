@@ -1,0 +1,57 @@
+{% extends 'Inicio.html' %}
+{% block content %}
+<div class="page-title" style="background-image: url(static/images/image.jpg)">
+    <h1>¿Qué tipo de sitio busca hoy?</h1>
+</div>
+<section id="testimonial">
+    <div class="container">
+        <div class="center fadeInDown">
+            <p class="lead">Este municipio cuenta con una gran variedad de establecimientos comerciales y de entretenimiento pertenecientes a la industria turística. Zipturist permite visualizar estos sitios clasificados por categoría y de forma individual.</p>
+        </div>
+        <div class="testimonial-slider owl-carousel" data-interval="5000" data-ride="carousel">
+            <div class="single-slide">
+                <div class="content">
+                    <a href="{{ url_for('sitiosTuristicos') }}"><img src="static/images/sitio.png" alt=""></a>
+                    
+                    <p>La primera maravilla de Colombia (Catedral de la Sal), además de una serie de lugares representativos a nivel deportivo, cultural y ecológico.</p>
+                </div>
+            </div>
+            <div class="single-slide">
+                <div class="content">
+                    <a href="{{ url_for('restaurantes') }}"><img src="static/images/restaurante.png" alt=""></a>
+                    <p>Variedad de restaurantes con distintas tematicas y diversos tipos de comida que incluye platillos típicos, para todos los presupuestos disponibles.</p>
+                  
+                </div>
+            </div>
+           <div class="single-slide">
+               
+                <div class="content">
+                    <a href="{{ url_for('artesanias') }}"><img src="static/images/artesania.png" alt=""></a>
+                    <p>Diversidad de diseños artesanales creativos y de calidad, pertenecientes a la cultura de la región y elaborados por artesanos zipaquireños.</p>
+                </div>
+            </div>
+            <div class="single-slide">
+                
+                <div class="content">
+                    <a href="{{ url_for('hoteles') }}"><img src="static/images/hotel.png" alt=""></a>
+                    <p>Un amplio abanico de cómodos lugares para hospedarse los días que lo requiera, con gran capacidad y una atención de excelente calidad.</p>
+                </div>
+            </div>
+            <div class="single-slide">
+              
+                <div class="content">
+                    <a href="{{ url_for('centrosReligiosos') }}"><img src="static/images/centro.png" alt=""></a>
+                    <p>Templos, catedrales, parroquias, capillas y basílicas con diferente arquitectura en su construcción, ubicadas en lugares estratégicos de fácil acceso.</p>
+                </div>
+            </div>
+            <div class="single-slide">
+                
+                <div class="content">
+                    <a href="{{ url_for('actividadesRepresentativas') }}"><img src="static/images/actividad.png" alt=""></a>
+                    <p>Celebraciones culturales, deportivas, tradicionales y artísticas de eventos y ferias simbólicas para el municipio y sus habitantes. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}  

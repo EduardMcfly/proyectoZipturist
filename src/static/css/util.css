@@ -1,0 +1,21 @@
+/*[ PADDING */
+.p-b-0 {padding-bottom: 30px;}
+
+/*[ MARGIN ]*/
+.m-b-1 {margin-bottom: 18px;}
+.m-b-2 {margin-bottom: 26px;}
+
+/*[ Width & Height ]*/
+.w-full {width: 100%;}
+
+/*[ Flex ]*/
+.flex-sb-m {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: space-between;
+	-ms-align-items: center;
+	align-items: center;
+}

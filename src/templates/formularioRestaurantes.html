@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+{% block content %}
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Registrar Restaurante</h6>
+                </div>
+                <div class="card-body">
+                  <form action="{{url_for('registerRestaurantes')}}" method="POST" class="mb-3" autocomplete="off" enctype="multipart/form-data">
+                    <div class="form-group"> 
+                      <label for="nombre2">Ingrese el nombre</label>
+                      <input type="text"  required="" class="form-control form-control-sm" id="nombre2" name="nombre"  pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-0-9]{2,48}" required>
+                    </div> 
+                    <div class="form-group"> 
+                      <label for="clave2">Dirección</label>
+                      <input type="text"  required=""  placeholder="Calle 45 Cra 9 /Calle 45 Cra 10 #11a /Cra. 10 #2-74" class="form-control form-control-sm" id="clave2" name="direccion" pattern="[A-Za-z 0-9!?-]{5,15}" required>
+                    </div> 
+                    <div class="form-group"> 
+                      <label for="clave2">Descripción</label>
+                      <textarea type="text"  required="" class="form-control form-control-sm" id="clave2" name="descripcion" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'´´-0-9 ]{2,1000}" required></textarea>
+                    </div> 
+                    <div class="form-group"> 
+                      <label for="clave2">Contacto Whatsapp</label>
+                      <input type="text"  required="" class="form-control form-control-sm" id="clave2" name="contacto" pattern="[0-9]{10}" required>
+                    </div> 
+                    <div class="form-group"> 
+                      <label for="clave2">Imagen</label>
+                      <input type="file"  required="" class="form-control form-control-Nsm" id="clave2" name="imagen">
+                    </div> 
+                    <button type="submit" class="btn btn-default">Enviar</button>       
+                  </form>
+                </div>
+                {% endblock %}

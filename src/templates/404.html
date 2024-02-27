@@ -1,0 +1,28 @@
+
+{% extends 'base.html' %}
+
+{% block title %}ZIP Turist{% endblock %}
+
+{% block customCSS %}
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/InicioBootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mainInicio.css') }}">
+ {% endblock %}
+
+{% block body %}
+<body>
+    <section class="window-height" id="error" style="background-image: url(static/images/404.png)">
+       <div class="container">
+            <h1>404</h1>
+            <p>Oops! Página no encontrada</p>
+            <a class="btn btn-primary" href="{{ url_for('inicio') }}">Inicio del sistema</a>
+       </div>
+    </section>
+
+</body>
+
+</html>
+{% endblock %}

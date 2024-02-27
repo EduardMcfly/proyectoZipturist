@@ -1,0 +1,30 @@
+{% extends 'inicio.html' %}
+{% block content %}
+<div class="page-titlee">
+    <h1>Sitios Turísticos</h1>
+</div>
+<section id="blog">
+    <div class="blog container">
+        <div class="row">
+            {% for d in data %}
+            {% set urlImagenes = 'static/fotos_turismo/' %}
+            <div class="col-md-8">
+                <div class="blog-item">
+                    <div class="blog-content">
+                        <h2><strong>{{d.nombre_sitiosT}}</strong></h2>
+                        <h3><strong>Descripción: </strong>{{d.descipcion_sitiosT}}</h3>
+                        <h3><strong>Contacto: </strong>{{d.contacto_sitiosT}}</h3>
+                        <h3><strong>Direccion: </strong>{{d.direccion_sitiosT}}</h3>
+                    </div>
+                    <iframe width="520" height="411" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=520&amp;height=411&amp;hl=en&amp;q=calle%2010%20cra%206%20zipaquira+()&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe> <a href='http://maps-generator.com/es'>Maps Generator ES</a> <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=c5b99e6dc72631432315adab1b8604c512029ff4'></script>
+                </div>
+            </div>
+            <aside class="col-md-4">
+                <div class="widget search">
+                    <form role="form">
+                        <img class="img-blog" src="{{ url_for('static', filename='fotos_turismo/' ~ d.imagen_sitiosT) }}" width="100%" alt="" />
+                    </form>
+                </div>
+ {% endfor %}
+</section>
+{% endblock %}

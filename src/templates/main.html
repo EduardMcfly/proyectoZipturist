@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block title %}ZIP Turist{% endblock %}
+{% block customCSS %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">   
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts-admin.css') }}"> 
+{% endblock %}
+{% block body %}
+<body id="page-top">
+    <div id="wrapper">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+                <div class="sidebar-brand-icon rotate-n-15">
+                </div>
+                <div class="sidebar-brand-text mx-3"><img src='{{ url_for('static', filename='images/zt.png') }}' alt="logo"></div>
+            </a>
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('admin') }}">
+                    <i class="fa fa-home"></i> 
+                    <span>Inicio</span></a>
+            </li>
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('formularioSitio') }}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Sitios Turísticos</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('formularioRestaurantes') }}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Restaurantes</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('formularioHotel') }}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Hoteles</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('formulario') }}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Centros Religiosos</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('formularioArtesanias') }}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Artesanías</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('formularioActividadesR') }}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>A. Representativas</span></a>
+            </li>
+            <hr class="sidebar-divider d-none d-md-block">
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        </ul>
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <ul class="navbar-nav ml-auto">
+                        <div class="topbar-divider d-none d-sm-block"></div>
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ current_user.nombre_Usuario }}</span>
+                              
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="{{ url_for('logout') }}" data-toggle="modal" data-target="#logoutModal">
+                                    Cerrar
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+               <div class="container-fluid">
+                {% block content %}{% endblock %}
+                
+            </div>
+        </div>
+    </div>
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cerrar Sesión?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="{{ url_for('logout') }}">Cerrar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/bootstrap.bundle.min.js"></script>
+    <script src="static/js/jquery.easing.min.js"></script>
+    <script src="static/js/sb-admin-2.min.js"></script>
+</body>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}ZIP Turist{% endblock %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/util.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='js/main.js') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="container-initial">
+    <div class="wrap-initial">
+        <div class="start-title"  style="background-image: url(./static/images/login.jpg);">
+            <span class="start-title-1">Inicio Sesión </span>
+            </div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <br />
+            {% for message in messages %}
+            <div class="alert alert-primary alert-dismissible" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+        
+            {% endwith %}
+            <form class="initial-form validate-form" action="/login" method="POST">
+                
+                <div class="initial-input validate-input m-b-2" data-validate="Username is required">
+                    <span class="label-input">Correo</span>
+                    <input class="input" type="email" name="correo_Usuario" required="" placeholder="" pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[^a-zA-Z0-9])(?!.*\s){8,15}$/" required>
+                    <span class="focus-input"></span>
+                </div>
+
+                <div class="initial-input validate-input m-b-2" data-validate = "Password is required">
+                    <span class="label-input">Contraseña</span>
+                    <input class="input" type="password" name="contraseña_Usuario" required="" placeholder="" pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[^a-zA-Z0-9])(?!.*\s){8,15}$/" required>
+                    <span class="focus-input"></span>
+                </div>
+
+                <div class="flex-sb-m w-full p-b-30">
+                    <div class="contact-form-checkbox">
+                        <input class="input-checkbox" id="ckb1" type="checkbox" name="remember-me">
+                    </div>
+
+                    <div>
+                        <a href="{{ url_for('singup') }}" class="txt1">Crear Cuenta</a>
+                    </div>
+                </div>
+                <div class="container-start-btn">
+                    <button class="start-btn">Iniciar sesión</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

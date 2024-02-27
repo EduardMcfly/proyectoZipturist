@@ -1,0 +1,437 @@
+{% extends 'main.html' %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+              {% if messages %}
+              <br />
+              {% for message in messages %}
+              <div class="alert alert-primary alert-dismissible" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+        
+            {% endwith %}
+<div class="row">
+    
+    <div class="col-lg-6">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Centros Religiosos</h6>
+            </div>
+            <div class="card-body">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Imagen</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for d in data %}
+                                <tr>
+                                    <td>{{d.nombre_Centro}}</td>
+                                    {% set urlImagenes = 'static/fotos_turismo/' %}
+                                    <td><img src="{{ urlImagenes }}{{ d.imagen_Centro }}" width="80" height="80" ></td>
+                                    <td><button class="btn btn-primary btn-sm" id="btn-editCr{{d.id}}" data-bs-toggle="modal" data-bs-target="#modalCr{{d.id_Centro}}">Editar</button></td>
+                                    <td><a  class="btn  btn-sm"  href="{{url_for('delete', id=d.id_Centro)}}" >Borrar</a></td>
+                                </tr>
+                                <div class="modal fade" id="modalCr{{d.id_Centro}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h1 class="modal-title fs-5" id="exampleModalLabel">{{d.nombre_Centro}}</h1>
+                        
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="/editCr/{{d.id_Centro}}" method="post"  class="mb-3" autocomplete="off" enctype="multipart/form-data">
+                                              
+                                                <div class="form-group"> 
+                                                    <label for="nombre2">Ingrese el nombre</label>
+                                                    <input type="text"  required="" class="form-control form-control-sm" id="nombre2" name="nombre" value="{{d.nombre_Centro}}" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-0-9]{2,48}" required>
+                                                  </div> 
+                                                  <div class="form-group"> 
+                                                    <label for="clave2">Dirección</label>
+                                                    <input type="text"  required="" class="form-control form-control-sm" id="clave2" name="direccion" value="{{d.direccion_Centro}}" pattern="[A-Za-z 0-9!?-]{5,15}" required>
+                                                  </div> 
+                                                  <div class="form-group"> 
+                                                    <label for="clave2">Descripción</label>
+                                                    <input type="text"  required="" class="form-control form-control-sm" id="clave2" name="descripcion" value="{{d.descipcion_Centro}}" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'´´-0-9 ]{2,1000}" required>
+                                                  </div> 
+                                                  <div class="form-group"> 
+                                                    <label for="clave2">Contacto Whatsapp</label>
+                                                    <input type="text"  required="" class="form-control form-control-sm" id="clave2" name="contacto" value="{{d.contacto_Centro}}" pattern="[0-9]{0,10}" required>
+                                                  </div> 
+                                                  <div class="form-group"> 
+                                                    <label for="clave2">Imagen</label>
+                                                    <img src="{{ urlImagenes }}{{ d.imagen_Centro }}" width="80" height="80" >
+                                                    <input type="file"  class="form-control form-control-sm" id="clave2"  name="imagen" >
+                                                  </div> 
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="submit" class="btn btn-primary">Guardar</button>
+                                        </div>
+                                        </form>
+                                      </div>
+                                    </div>
+                                  </div>
+                                {% endfor %}
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary"> Artesanías</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Imagen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for d in datos3 %}
+                            <tr>
+                                <td>{{d.nombre_artesanias}}</td>
+                                {% set urlImagenes = 'static/fotos_turismo/' %}
+                                <td><img src="{{ urlImagenes }}{{ d.imagen_artesanias }}" width="80" height="80" ></td>
+                                <td><button class="btn btn-primary btn-sm" id="btn-edit{{d.id_artesanias}}" data-bs-toggle="modal" data-bs-target="#modal{{d.id_artesanias}}">Editar</button></td>
+                                <td><a  class="btn  btn-sm"  href="{{url_for('deleteA', id=d.id_artesanias)}}">Borrar</a></td>
+                            </tr>
+                            <div class="modal fade" id="modal{{d.id_artesanias}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel">{{d.nombre_artesanias}}</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/edit/{{d.id_artesanias}}" method="post"  class="mb-3" autocomplete="off" enctype="multipart/form-data">
+                                    
+                                            <div class="form-group"> 
+                                                <label for="nombre2">Ingrese el nombre</label>
+                                                <input type="text"  required="" class="form-control form-control-sm" id="nombre2" name="nombre" value="{{d.nombre_artesanias}}" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-0-9]{2,48}" required>
+                                              </div> 
+                                              <div class="form-group"> 
+                                                <label for="clave2">Dirección</label>
+                                                <input type="text"  required="" class="form-control form-control-sm" id="clave2" name="direccion" value="{{d.direccion_artesanias}}" pattern="[A-Za-z 0-9!?-]{5,15}" required>
+                                              </div> 
+                                              <div class="form-group"> 
+                                                <label for="clave2">Descripción</label>
+                                                <input type="text"  required="" class="form-control form-control-sm" id="clave2" name="descripcion" value="{{d.descipcion_artesanias}}" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'´´-0-9 ]{2,1000}" required>
+                                              </div> 
+                                              <div class="form-group"> 
+                                                <label for="clave2">Contacto Whatsapp</label>
+                                                <input type="text"  required="" class="form-control form-control-sm" id="clave2" name="contacto" value="{{d.contacto_artesanias}}" pattern="[0-9]{0,10}" required>
+                                              </div> 
+                                              <div class="form-group"> 
+                                                <label for="clave2">Imagen</label>
+                                                <img src="{{ urlImagenes }}{{ d.imagen_artesanias }}" width="80" height="80" >
+                                                <input type="file"  class="form-control form-control-sm" id="clave2"  name="imagen">
+                                              </div> 
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="submit" class="btn btn-primary">Guardar</button>
+                                    </div>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary"> Actividades Representativas</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Imagen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for d in datos1 %}
+                            <tr>
+                                {% set urlImagenes = 'static/fotos_turismo/' %}
+                                <td>{{d.nombre_Actividad}}</td>
+
+                                <td><img src="{{ urlImagenes }}{{ d.imagen_Actividad }}" width="80" height="80" ></td>
+                                <td><button class="btn btn-primary btn-sm" id="btn-editAr{{d.id_Actividad}}" data-bs-toggle="modal" data-bs-target="#modalAr{{d.id_Actividad}}">Editar</button></td>
+                                <td><a  class="btn  btn-sm" href="{{url_for('deleteAr', id=d.id_Actividad)}}">Borrar</a></td>
+                            </tr>
+                            <div class="modal fade" id="modalAr{{d.id_Actividad}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel">{{d.nombre_Actividad}}</h1>
+                    
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/editAr/{{d.id_Actividad}}" method="post"  class="mb-3" autocomplete="off" enctype="multipart/form-data">
+                                    
+                                            <div class="form-group"> 
+                                                <label for="nombre2">Ingrese el nombre</label>
+                                                <input type="text"  required="" class="form-control form-control-sm" id="nombre2" name="nombre" value="{{d.nombre_Actividad}}" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-0-9]{2,48}" required>
+                                              </div> 
+                                              <div class="form-group"> 
+                                                <label for="clave2">Lugar</label>
+                                                <input type="text"  required="" class="form-control form-control-sm" id="clave2" name="direccion" value="{{d.lugar_Actividad}}" pattern="[A-Za-z 0-9!?-]{5,15}" required>
+                                              </div> 
+                                              <div class="form-group"> 
+                                                <label for="clave2">Descripción</label>
+                                                <input type="text"  required="" class="form-control form-control-sm" id="clave2" name="descripcion" value="{{d.descipcion_Actividad}}" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'´´-0-9 ]{2,1000}" required>
+                                              </div> 
+                                              <div class="form-group"> 
+                                                <label for="clave2">Contacto Whatsapp</label>
+                                                <input type="text"  required="" class="form-control form-control-sm" id="clave2" name="contacto" value="{{d.contacto_Actividad}}" pattern="[0-9]{0,10}" required>
+                                              </div> 
+                                              <div class="form-group"> 
+                                                <label for="clave2">Imagen</label>
+                                                <img src="{{ urlImagenes }}{{ d.imagen_Actividad}}" width="80" height="80" >
+                                                <input type="file"  < class="form-control form-control-<sm" id="clave2"  name="imagen" >
+                                              </div> 
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="submit" class="btn btn-primary">Guardar</button>
+                                    </div>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card shadow mb-4">
+            <div
+                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary"> Sitios Turísticos</h6>
+            </div>
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Imagen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for d in datos2 %}
+                            <tr>
+                                <td>{{d.nombre_sitiosT}}</td>
+                                {% set urlImagenes = 'static/fotos_turismo/' %}
+                                <td><img src="{{ urlImagenes }}{{ d.imagen_sitiosT }}" width="80" height="80" ></td>
+                                <td><button class="btn btn-primary btn-sm" id="btn-editSt{{d.id_sitiosT}}" data-bs-toggle="modal" data-bs-target="#modalSt{{d.id_sitiosT}}">Editar</button></td>
+                                <td><a  class="btn  btn-sm" href="{{url_for('deleteS', id=d.id_sitiosT)}}">Borrar</a></td>
+                            </tr>
+                            <div class="modal fade" id="modalSt{{d.id_sitiosT}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel">{{d.nombre_sitiosT}}</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/editSt/{{d.id_sitiosT}}" method="post"  class="mb-3" autocomplete="off" enctype="multipart/form-data">
+                                    
+                                            <div class="form-group"> 
+                                                <label for="nombre2">Ingrese el nombre</label>
+                                                <input type="text"  required="" class="form-control form-control-sm" id="nombre2" name="nombre" value="{{d.nombre_sitiosT}}" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-0-9]{2,48}" required>
+                                              </div> 
+                                              <div class="form-group"> 
+                                                <label for="clave2">Lugar</label>
+                                                <input type="text"  required="" class="form-control form-control-sm" id="clave2" name="direccion" value="{{d.direccion_sitiosT}}" pattern="[A-Za-z 0-9!?-]{5,15}" required>
+                                              </div> 
+                                              <div class="form-group"> 
+                                                <label for="clave2">Descripción</label>
+                                                <input type="text"  required="" class="form-control form-control-sm" id="clave2" name="descripcion" value="{{d.descipcion_sitiosT}}" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'´´-0-9 ]{2,1000}" required>
+                                              </div> 
+                                              <div class="form-group"> 
+                                                <label for="clave2">Contacto Whatsapp</label>
+                                                <input type="text"  required="" class="form-control form-control-sm" id="clave2" name="contacto" value="{{d.contacto_sitiosT}}" pattern="[0-9]{0,10}" required>
+                                              </div> 
+                                              <div class="form-group"> 
+                                                <label for="clave2">Imagen</label>
+                                                <img src="{{ urlImagenes }}{{ d.imagen_sitiosT }}" width="80" height="80" >
+                                                <input type="file"  < class="form-control form-control-<sm" id="clave2"  name="imagen">
+                                              </div> 
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="submit" class="btn btn-primary">Guardar</button>
+                                    </div>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+       <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"> Restaurantes</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Imagen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for d in dato %}
+                        <tr>
+                            <td>{{d.nombre_restaurante}}</td>
+                            {% set urlImagenes = 'static/fotos_turismo/' %}
+                            <td><img src="{{ urlImagenes }}{{ d.imagen_restaurante }}" width="80" height="80" ></td>
+                            <td><button class="btn btn-primary btn-sm" id="btn-editR{{d.id_restaurante}}" data-bs-toggle="modal" data-bs-target="#modalR{{d.id_restaurante}}">Editar</button></td>
+                            <td><a  class="btn  btn-sm"  href="{{url_for('deleteR', id=d.id_restaurante)}}">Borrar</a></td>
+                        </tr>
+                        <div class="modal fade" id="modalR{{d.id_restaurante}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">{{d.nombre_restaurante}}</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/editR/{{d.id_restaurante}}" method="post"  class="mb-3" autocomplete="off" enctype="multipart/form-data">
+                                
+                                        <div class="form-group"> 
+                                            <label for="nombre2">Ingrese el nombre</label>
+                                            <input type="text"  required="" class="form-control form-control-sm" id="nombre2" name="nombre" value="{{d.nombre_restaurante}}" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-0-9]{2,48}" required>
+                                          </div> 
+                                          <div class="form-group"> 
+                                            <label for="clave2">Lugar</label>
+                                            <input type="text"  required="" class="form-control form-control-sm" id="clave2" name="direccion" value="{{d.direccion_restaurante}}" pattern="[A-Za-z 0-9!?-]{5,15}" required>
+                                          </div> 
+                                          <div class="form-group"> 
+                                            <label for="clave2">Descripción</label>
+                                            <input type="text"  required="" class="form-control form-control-sm" id="clave2" name="descripcion" value="{{d.descipcion_restaurante}}" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'´´-0-9 ]{2,1000}" required>
+                                          </div> 
+                                          <div class="form-group"> 
+                                            <label for="clave2">Contacto Whatsapp</label>
+                                            <input type="text"  required="" class="form-control form-control-sm" id="clave2" name="contacto" value="{{d.contacto_restaurante}}" pattern="[0-9]{0,10}" required>
+                                          </div> 
+                                          <div class="form-group"> 
+                                            <img src="{{ urlImagenes }}{{ d.imagen_restaurante }}" width="80" height="80" >
+                                            <label for="clave2">Imagen</label>
+                                            <input type="file"  < class="form-control form-control-<sm" id="clave2"  name="imagen" >
+                                          </div> 
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Hoteles</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Imagen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for d in datos %}
+                            <tr>
+                                <td>{{d.nombre_hotel}}</td>
+                                {% set urlImagenes = 'static/fotos_turismo/' %}
+                                <td><img src="{{ urlImagenes }}{{ d.imagen_hotel }}" width="80" height="80" ></td>
+                                <td><button class="btn btn-primary btn-sm" id="btn-editH{{d.id_hotel}}" data-bs-toggle="modal" data-bs-target="#modalH{{d.id_hotel}}">Editar</button></td>
+                                <td><a  class="btn btn-sm" href="{{url_for('deleteH', id=d.id_hotel)}}">Borrar</a></td>
+                            </tr>
+                            <div class="modal fade" id="modalH{{d.id_hotel}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel">{{d.nombre_hotel}}</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/editH/{{d.id_hotel}}" method="post"  class="mb-3" autocomplete="off" enctype="multipart/form-data">
+                                            <div class="form-group"> 
+                                                <label for="nombre2">Ingrese el nombre</label>
+                                                <input type="text"  required="" class="form-control form-control-sm" id="nombre2" name="nombre" value="{{d.nombre_hotel}}" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-0-9]{2,48}" required>
+                                              </div> 
+                                              <div class="form-group"> 
+                                                <label for="clave2">Lugar</label>
+                                                <input type="text"  required="" class="form-control form-control-sm" id="clave2" name="direccion" value="{{d.direccion_hotel}}" pattern="[A-Za-z 0-9!?-]{5,15}" required>
+                                              </div> 
+                                              <div class="form-group"> 
+                                                <label for="clave2">Descripción</label>
+                                                <input type="text"  required="" class="form-control form-control-sm" id="clave2" name="descripcion" value="{{d.descipcion_hotel}}" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'´´-0-9 ]{2,1000}" required>
+                                              </div> 
+                                              <div class="form-group"> 
+                                                <label for="clave2">Contacto Whatsapp</label>
+                                                <input type="text"  required="" class="form-control form-control-sm" id="clave2" name="contacto" value="{{d.contacto_hotel}}" pattern="[0-9]{0,10}" required>
+                                              </div> 
+                                              <div class="form-group"> 
+                                                <label for="clave2">Imagen</label>
+                                                <img src="{{ urlImagenes }}{{ d.imagen_hotel}}" width="80" height="80" >
+                                                <input type="file"  class="form-control form-control-sm" id="clave2"  name="imagen">
+                                              </div> 
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="submit" class="btn btn-primary">Guardar</button>
+                                    </div>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+             </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
