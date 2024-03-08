@@ -1,8 +1,10 @@
+<!-- template para visualizar una artesania en especifico -->
 {% extends 'inicio.html' %}
 {% block content %}
 <div class="page-titlee">
-    <h1>Artesanías</h1>
+    <h1>ArtesanÍas</h1>
 </div>
+<!-- Contenido del template -->
 <section id="blog">
     <div class="blog container">
         <div class="row">
@@ -14,9 +16,34 @@
                         <h2><strong>{{d.nombre_artesanias}}</strong></h2>
                         <h3><strong>Descripción: </strong>{{d.descipcion_artesanias}}</h3>
                         <h3><strong>Contacto: </strong>{{d.contacto_artesanias}}</h3>
-                        <h3><strong>Direccion: </strong></h3>
+                        <h3><strong>Direccion: </strong>{{d.direccion_artesanias}}</h3>
                     </div>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1671.0710057556223!2d-74.00645909086757!3d5.022489457323549!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e40719b0e0fb849%3A0xa9122789d7e8824e!2sHOGAR%20ARTESANAL%20ZIPAQUIRE%C3%91O!5e0!3m2!1sen!2sco!4v1709159204180!5m2!1sen!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div id="map" style="height: 400px;"></div>
+                     <!-- Funciones para convertir la direccion en coordenadas y mostrarlas en el mapa.-->
+                    <script>
+                        function convertirDireccion() {
+                            var direccion = "{{ d.lugar_artesanias }}";
+                            var geocoder = new google.maps.Geocoder();
+
+                            geocoder.geocode({'address': direccion}, function(results, status) {
+                                if (status === 'OK') {
+                                    var coordenadas = results[0].geometry.location;
+                                    var map = new google.maps.Map(document.getElementById('map'), {
+                                        zoom: 15,
+                                        center: coordenadas
+                                    });
+                                    var marcador = new google.maps.Marker({
+                                        position: coordenadas,
+                                        map: map,
+                                        title: '{{d.nombre_artesanias}}'
+                                    });
+                                } else {
+                                    alert('La geocodificación falló debido a: ' + status);
+                                }
+                            });
+                        }
+                        convertirDireccion();
+                    </script>
                 </div>
             </div>
             <aside class="col-md-4">
@@ -25,6 +52,9 @@
                         <img class="img-blog" src="{{ url_for('static', filename='fotos_turismo/' ~ d.imagen_artesanias) }}" width="100%" alt="" />
                     </form>
                 </div>
-    {% endfor %}
+            </aside>
+            {% endfor %}
+        </div>
+    </div>
 </section>
 {% endblock %}

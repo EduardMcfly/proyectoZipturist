@@ -1,3 +1,4 @@
+  <!-- Template base para modulo de administración de sitios-->
 {% extends 'base.html' %}
 {% block title %}ZIP Turist{% endblock %}
 {% block customCSS %}
@@ -5,6 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts-admin.css') }}"> 
 {% endblock %}
 {% block body %}
+  <!-- barra de navegación -->
 <body id="page-top">
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -55,6 +57,7 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
         </ul>
+          <!-- Nombre de usuario-->
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -86,6 +89,7 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
+      <!-- Cerrar sesión-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -103,6 +107,7 @@
             </div>
         </div>
     </div>
+      <!-- JS-->
     <script src="static/js/jquery.min.js"></script>
     <script src="static/js/bootstrap.bundle.min.js"></script>
     <script src="static/js/jquery.easing.min.js"></script>

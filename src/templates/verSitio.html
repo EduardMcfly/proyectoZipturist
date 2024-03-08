@@ -1,8 +1,10 @@
+<!-- template para visualizar un sitio turistíco en especifico -->
 {% extends 'inicio.html' %}
 {% block content %}
 <div class="page-titlee">
     <h1>Sitios Turísticos</h1>
 </div>
+<!-- Contenido del template -->
 <section id="blog">
     <div class="blog container">
         <div class="row">
@@ -14,9 +16,34 @@
                         <h2><strong>{{d.nombre_sitiosT}}</strong></h2>
                         <h3><strong>Descripción: </strong>{{d.descipcion_sitiosT}}</h3>
                         <h3><strong>Contacto: </strong>{{d.contacto_sitiosT}}</h3>
-                        <h3><strong>Direccion: </strong></h3>
+                        <h3><strong>Direccion: </strong>{{d.direccion_sitiosT}}</h3>
                     </div>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1987.2521735199368!2d-74.00226644470523!3d5.0216220450820295!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e40702137eb12ef%3A0x945ec980af060aa2!2sEstaci%C3%B3n%20de%20Tren%20de%20Zipaquira!5e0!3m2!1sen!2sco!4v1709158367819!5m2!1sen!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div id="map" style="height: 400px;"></div>
+                     <!-- Funciones para convertir la direccion en coordenadas y mostrarlas en el mapa.-->
+                    <script>
+                        function convertirDireccion() {
+                            var direccion = "{{ d.lugar_sitiosT }}";
+                            var geocoder = new google.maps.Geocoder();
+
+                            geocoder.geocode({'address': direccion}, function(results, status) {
+                                if (status === 'OK') {
+                                    var coordenadas = results[0].geometry.location;
+                                    var map = new google.maps.Map(document.getElementById('map'), {
+                                        zoom: 15,
+                                        center: coordenadas
+                                    });
+                                    var marcador = new google.maps.Marker({
+                                        position: coordenadas,
+                                        map: map,
+                                        title: '{{d.nombre_sitiosT}}'
+                                    });
+                                } else {
+                                    alert('La geocodificación falló debido a: ' + status);
+                                }
+                            });
+                        }
+                        convertirDireccion();
+                    </script>
                 </div>
             </div>
             <aside class="col-md-4">
@@ -25,6 +52,9 @@
                         <img class="img-blog" src="{{ url_for('static', filename='fotos_turismo/' ~ d.imagen_sitiosT) }}" width="100%" alt="" />
                     </form>
                 </div>
- {% endfor %}
+            </aside>
+            {% endfor %}
+        </div>
+    </div>
 </section>
-{% endblock %}
+{% endblock %}s

@@ -1,14 +1,11 @@
+<!--template de Crear Cuenta -->
 {% extends 'base.html' %}
 
 {% block title %}SingU{% endblock %}
 {% block customCSS %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-<!--===============================================================================================-->
-<!--===============================================================================================-->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/util.css') }}">
-<!--===============================================================================================-->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-<!--===============================================================================================-->
 <link rel="stylesheet" href="{{ url_for('static', filename='js/main.js') }}">
 
 <style type="text/css">
@@ -25,7 +22,7 @@
 {% endblock %}
 
 {% block body %}
-
+<!-- Contenido del template-->
 <div class="principal">
     
     <div class="container-initial">
@@ -89,7 +86,7 @@
                     <button type="password" class="start-btn">Crear Cuenta</button>
                 </div>
             </form>
-
+            <!-- Funciónes java script para activar y desactivar los requerimientos  de la contraseña-->
             <script type="text/javascript">
 
                 function mostrarPremio() {

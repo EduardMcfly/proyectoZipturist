@@ -1,3 +1,4 @@
+<!-- template para la administración de los sitios turisticos -->
 {% extends 'main.html' %}
 {% block content %}
 {% with messages = get_flashed_messages() %}
@@ -12,8 +13,9 @@
             {% endif %}
         
             {% endwith %}
+<!-- Contenido del template -->
 <div class="row">
-    
+  <!-- tarjeta correspondiente a los centros Religiosos -->
     <div class="col-lg-6">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -21,6 +23,7 @@
             </div>
             <div class="card-body">
                 <div class="card-body">
+                  <!-- tabla  para mostarr la lista de centros religiosos-->
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
@@ -38,6 +41,7 @@
                                     <td><button class="btn btn-primary btn-sm" id="btn-editCr{{d.id}}" data-bs-toggle="modal" data-bs-target="#modalCr{{d.id_Centro}}">Editar</button></td>
                                     <td><a  class="btn  btn-sm"  href="{{url_for('delete', id=d.id_Centro)}}" >Borrar</a></td>
                                 </tr>
+                                <!-- modal para la edicion de un  hotel en específico-->
                                 <div class="modal fade" id="modalCr{{d.id_Centro}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                       <div class="modal-content">
@@ -86,11 +90,13 @@
                 </div>
             </div>
         </div>
+        <! -- tarjeta correspondiente a las artesanias ->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary"> Artesanías</h6>
             </div>
             <div class="card-body">
+              <!-- tabla  para mostarr la lista de artesanias-->
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
@@ -108,6 +114,7 @@
                                 <td><button class="btn btn-primary btn-sm" id="btn-edit{{d.id_artesanias}}" data-bs-toggle="modal" data-bs-target="#modal{{d.id_artesanias}}">Editar</button></td>
                                 <td><a  class="btn  btn-sm"  href="{{url_for('deleteA', id=d.id_artesanias)}}">Borrar</a></td>
                             </tr>
+                            <!-- modal para la edicion de un registro en específico-->
                             <div class="modal fade" id="modal{{d.id_artesanias}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
@@ -154,11 +161,13 @@
                 </div>
             </div>
         </div>
+        <!-- tarjeta correspondiente a las actividades Representativas -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary"> Actividades Representativas</h6>
             </div>
             <div class="card-body">
+              <!-- tabla  para mostarr la lista de actividades representatiivas-->
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
@@ -177,6 +186,7 @@
                                 <td><button class="btn btn-primary btn-sm" id="btn-editAr{{d.id_Actividad}}" data-bs-toggle="modal" data-bs-target="#modalAr{{d.id_Actividad}}">Editar</button></td>
                                 <td><a  class="btn  btn-sm" href="{{url_for('deleteAr', id=d.id_Actividad)}}">Borrar</a></td>
                             </tr>
+                            <!-- modal para la edicion de un registro en específico-->
                             <div class="modal fade" id="modalAr{{d.id_Actividad}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
@@ -225,6 +235,7 @@
             </div>
         </div>
     </div>
+    <!-- tarjeta correspondiente a los sitios turisticos -->
     <div class="col-lg-6">
         <div class="card shadow mb-4">
             <div
@@ -232,8 +243,8 @@
                 <h6 class="m-0 font-weight-bold text-primary"> Sitios Turísticos</h6>
             </div>
             <div class="card-body">
-
                 <div class="table-responsive">
+                  <!-- tabla  para mostarr la lista de sitios turisticos-->
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
@@ -250,6 +261,7 @@
                                 <td><button class="btn btn-primary btn-sm" id="btn-editSt{{d.id_sitiosT}}" data-bs-toggle="modal" data-bs-target="#modalSt{{d.id_sitiosT}}">Editar</button></td>
                                 <td><a  class="btn  btn-sm" href="{{url_for('deleteS', id=d.id_sitiosT)}}">Borrar</a></td>
                             </tr>
+                            <!-- modal para la edicion de un registro en específico-->
                             <div class="modal fade" id="modalSt{{d.id_sitiosT}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
@@ -295,12 +307,14 @@
                 </div>
             </div>
         </div>
+        <!-- tarjeta correspondiente a los restaurantes -->
        <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary"> Restaurantes</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
+              <!-- tabla  para mostarr la lista de restaurantes-->
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
@@ -317,6 +331,7 @@
                             <td><button class="btn btn-primary btn-sm" id="btn-editR{{d.id_restaurante}}" data-bs-toggle="modal" data-bs-target="#modalR{{d.id_restaurante}}">Editar</button></td>
                             <td><a  class="btn  btn-sm"  href="{{url_for('deleteR', id=d.id_restaurante)}}">Borrar</a></td>
                         </tr>
+                        <!-- modal para la edicion de un registro en específico-->
                         <div class="modal fade" id="modalR{{d.id_restaurante}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">
@@ -363,12 +378,14 @@
             </div>
         </div>
     </div>
+    <!-- tarjeta correspondiente a los Hoteles -->
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Hoteles</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
+                  <!-- tabla  para mostarr la lista de hoteles-->
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
@@ -385,6 +402,7 @@
                                 <td><button class="btn btn-primary btn-sm" id="btn-editH{{d.id_hotel}}" data-bs-toggle="modal" data-bs-target="#modalH{{d.id_hotel}}">Editar</button></td>
                                 <td><a  class="btn btn-sm" href="{{url_for('deleteH', id=d.id_hotel)}}">Borrar</a></td>
                             </tr>
+                            <!-- modal para la edicion de un registro en específico-->
                             <div class="modal fade" id="modalH{{d.id_hotel}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">

@@ -1,3 +1,4 @@
+  <!-- Template base para modulo de visualización de sitios-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,13 +10,14 @@
     <title>Zipturist</title>
     <link rel="icon" type="image/x-icon" href="static/images/zt.ico" />
 
-    <!-- core CSS -->
+    <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/InicioBootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/mainInicio.css') }}">
 
+      <!-- JS -->
     <script src="static/js/jquery.js"></script>
     <script src="static/js/bootstrap.min.js"></script>
     <script src="static/js/owl.carousel.min.js"></script>
@@ -39,6 +41,7 @@
                 </div>
             </div>
         </div>
+          <!-- Barra de navegación-->
         <nav class="navbar navbar-inverse" role="banner">
             <div class="container">
                 <div class="navbar-header">
@@ -72,6 +75,7 @@
         </nav>
     </header>
     {% block content %}{% endblock %}
+      <!-- pie de pagínas -->
    <footer id="footer" class="midnight-blue">
         <div class="container">
             <div class="row">
