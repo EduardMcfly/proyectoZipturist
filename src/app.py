@@ -500,7 +500,7 @@ def admin():
     cursor.close()
 
     cursor=db.connection.cursor()
-    cursor.execute("SELECT * FROM sitiosturisticos")
+    cursor.execute("SELECT * FROM sitiosTuristicos")
     myresultados2 = cursor.fetchall()
     #Convertir los datos a diccionario
     insertObjectos2 = []
@@ -564,7 +564,7 @@ def deleteH(id):
 @app.route('/deleteS/<string:id>')
 def deleteS(id):
     cursor=db.connection.cursor()
-    sql = "DELETE FROM sitiosturisticos WHERE id_sitiosT=%s"
+    sql = "DELETE FROM sitiosTuristicos WHERE id_sitiosT=%s"
     data = (id,)
     cursor.execute(sql, data)
     db.connection.commit()
@@ -717,7 +717,7 @@ def verActividad(id):
 @app.route('/verSitio/<string:id>')
 def verSitio(id):
     cursor=db.connection.cursor()
-    query="SELECT * FROM sitiosturisticos WHERE id_sitiosT=%s"
+    query="SELECT * FROM sitiosTuristicos WHERE id_sitiosT=%s"
     data=(id)
     cursor.execute(query,data)
     myresultados1 = cursor.fetchall()
