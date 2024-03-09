@@ -24,6 +24,8 @@ db = MySQL(app)
 #Manejo de sesiones
 login_manager_app = LoginManager(app)
 
+
+
 @login_manager_app.user_loader
 def load_user(id):
     return ModeloUsuario.get_by_id(db, id)
@@ -31,6 +33,18 @@ def load_user(id):
 #Para subir archivo tipo foto al servidor
 import os
 from werkzeug.utils import secure_filename 
+
+
+
+#Creación de ruta para pagína inicial
+@app.route('/health')
+def health():
+    cur = db.connection.cursor()
+    # test db connection
+    cur.execute("SELECT 2 + 2")
+    row = cur.fetchone()
+    print('result', row[0])
+    return "OK"
 
 #Función autenticación de usuario y definicón de ruta correspondiente al inicio de sesión.
 @app.route('/login', methods=['GET','POST'])
@@ -785,9 +799,11 @@ def status_401(error):
 def status_404(error):
     return render_template('404.html')
 
-#iniciación de la aplicacion en flask.
+app.config.from_object(config['development'])
+
+# iniciación de la aplicacion en flask.
 if __name__ == '__main__':
-    app.config.from_object(config['development'])
     app.register_error_handler(401, status_401)
     app.register_error_handler(404, status_404)
+
     app.run()
