@@ -275,7 +275,7 @@ def edit(id):
         nuevoNombreFile = recibeFoto(file)
     else:
         cursor = db.connection.cursor()
-        sql = "SELECT imagen_artesanias FROM Artesanias WHERE id_artesanias=%s"
+        sql = "SELECT imagen_artesanias FROM artesanias WHERE id_artesanias=%s"
         data = (id,)
         cursor.execute(sql, data)
         db.connection.commit()
@@ -306,7 +306,7 @@ def editAr(id):
         nuevoNombreFile = recibeFoto(file)
     else:
         cursor = db.connection.cursor()
-        sql = "SELECT imagen_Actividad  FROM actividadesReprecentativas WHERE id_Actividad =%s"
+        sql = "SELECT imagen_Actividad  FROM actividadesreprecentativas WHERE id_Actividad =%s"
         data = (id,)
         cursor.execute(sql, data)
         db.connection.commit()
@@ -314,7 +314,7 @@ def editAr(id):
         nuevoNombreFile=myresultados1
     if nombre and direccion and descripcion and contacto and nuevoNombreFile:
         cursor = db.connection.cursor()
-        query = """UPDATE actividadesReprecentativas 
+        query = """UPDATE actividadesreprecentativas 
                    SET nombre_Actividad = %s,
                        lugar_Actividad = %s,
                        descipcion_Actividad = %s,
@@ -338,7 +338,7 @@ def editCr (id):
         nuevoNombreFile = recibeFoto(file)
     else:
         cursor = db.connection.cursor()
-        sql = "SELECT imagen_Centro  FROM CentrosReligiosos WHERE id_Centro =%s"
+        sql = "SELECT imagen_Centro  FROM centrosreligiosos WHERE id_Centro =%s"
         data = (id,)
         cursor.execute(sql, data)
         db.connection.commit()
@@ -346,7 +346,7 @@ def editCr (id):
         nuevoNombreFile=myresultados1
     if nombre and direccion and descripcion and contacto and nuevoNombreFile:
         cursor = db.connection.cursor()
-        query = """UPDATE CentrosReligiosos 
+        query = """UPDATE centrosreligiosos 
                    SET nombre_Centro = %s,
                        direccion_Centro = %s,
                        descipcion_Centro = %s,
