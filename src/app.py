@@ -800,8 +800,8 @@ def status_404(error):
     return render_template('404.html')
 
 
-#iniciación de la aplicacion en flask.
-if __name__ == '__main__' or __name__ == 'app':
+# iniciación de la aplicacion en flask.
+if __name__ == '__main__':
     app.config.from_object(config['development'])
     app.register_error_handler(401, status_401)
     app.register_error_handler(404, status_404)
