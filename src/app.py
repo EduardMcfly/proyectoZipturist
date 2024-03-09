@@ -211,7 +211,7 @@ def registerSitio():
         nuevoNombreFile = recibeFoto(file) #Llamado la funcion que procesa la imagen
         usuario_Id=current_user.id
         cursor=db.connection.cursor()
-        query =f"""INSERT INTO sitiosturisticos(nombre_sitiosT,direccion_sitiosT,descipcion_sitiosT,
+        query =f"""INSERT INTO sitiosTuristicos(nombre_sitiosT,direccion_sitiosT,descipcion_sitiosT,
         contacto_sitiosT,imagen_sitiosT,usuario_Id) 
         VALUES('{nombre}','{direccion}','{descripcion}','{contacto}','{nuevoNombreFile}',{usuario_Id})"""
         cursor=db.connection.cursor()
