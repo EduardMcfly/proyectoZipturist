@@ -1,5 +1,5 @@
 <!-- template para visualizar la galeria de los Restaurantes -->
-{% extends 'Inicio.html' %}
+{% extends 'inicio.html' %}
 {% block content %}
 <div class="page-title" style="background-image: url(static/images/image.jpg)">
     <h1>Restaurantes</h1>
@@ -10,22 +10,22 @@
             {% for d in data %}
             {% set urlImagenes = 'static/fotos_turismo/' %}
             <div class="col-lg-6 mb-5">
-            <div class="col-md-4 col-sm-6 single-team">
-                <div class="inner">
-                    <div class="team-img">
-                        <a   href="{{url_for('verRestaurante', id=d.id_restaurante)}}"><img src="{{ urlImagenes }}{{ d.imagen_restaurante }}" alt=""></a>
-                    </div>
-                    <div class="team-content">
-                        <h4>{{d.nombre_restaurante}}</h4>
-                        <span class="desg">{{d.direccion_restaurante}} </span>
+                <div class="col-md-4 col-sm-6 single-team">
+                    <div class="inner">
+                        <div class="team-img">
+                            <a href="{{url_for('verRestaurante', id=d.id_restaurante)}}"><img
+                                    src="{{ urlImagenes }}{{ d.imagen_restaurante }}" alt=""></a>
+                        </div>
+                        <div class="team-content">
+                            <h4>{{d.nombre_restaurante}}</h4>
+                            <span class="desg">{{d.direccion_restaurante}} </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
+
             </div>
             {% endfor %}
         </div>
     </div>
 </section>
 {% endblock %}
-

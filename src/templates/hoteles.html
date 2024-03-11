@@ -1,5 +1,5 @@
 <!-- template para visualizar la galeria de los hoteles-->
-{% extends 'Inicio.html' %}
+{% extends 'inicio.html' %}
 {% block content %}
 
 <div class="page-title" style="background-image: url(static/images/image.jpg)">
@@ -11,18 +11,19 @@
             {% for d in data %}
             {% set urlImagenes = 'static/fotos_turismo/' %}
             <div class="col-lg-6 mb-5">
-            <div class="col-md-4 col-sm-6 single-team">
-                <div class="inner">
-                    <div class="team-img">
-                        <a   href="{{url_for('verHotel', id=d.id_hotel)}}"> <img src="{{ urlImagenes }}{{ d.imagen_hotel }}" alt=""></a>
-                    </div>
-                    <div class="team-content">
-                        <h4>{{d.nombre_hotel}}</h4>
-                        <span class="desg">{{d.direccion_hotel}} </span>
+                <div class="col-md-4 col-sm-6 single-team">
+                    <div class="inner">
+                        <div class="team-img">
+                            <a href="{{url_for('verHotel', id=d.id_hotel)}}"> <img
+                                    src="{{ urlImagenes }}{{ d.imagen_hotel }}" alt=""></a>
+                        </div>
+                        <div class="team-content">
+                            <h4>{{d.nombre_hotel}}</h4>
+                            <span class="desg">{{d.direccion_hotel}} </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
+
             </div>
             {% endfor %}
         </div>
@@ -30,4 +31,3 @@
 </section>
 
 {% endblock %}
-

@@ -1,6 +1,6 @@
 <!-- template para visualizar la galeria de las actividades representativas -->
 
-{% extends 'Inicio.html' %}
+{% extends 'inicio.html' %}
 {% block content %}
 <div class="page-title" style="background-image: url(static/images/image.jpg)">
     <h1>Actividades Representativas</h1>
@@ -11,18 +11,19 @@
             {% for d in data %}
             {% set urlImagenes = 'static/fotos_turismo/' %}
             <div class="col-lg-6 mb-5">
-            <div class="col-md-4 col-sm-6 single-team">
-                <div class="inner">
-                    <div class="team-img">
-                        <a   href="{{url_for('verActividad', id=d.id_Actividad)}}"> <img src="{{ urlImagenes }}{{ d.imagen_Actividad }}" alt=""> </a>
-                    </div>
-                    <div class="team-content">
-                        <h4>{{d.nombre_Actividad}}</h4>
-                        <span class="desg">{{d.lugar_Actividad}} </span>
+                <div class="col-md-4 col-sm-6 single-team">
+                    <div class="inner">
+                        <div class="team-img">
+                            <a href="{{url_for('verActividad', id=d.id_Actividad)}}"> <img
+                                    src="{{ urlImagenes }}{{ d.imagen_Actividad }}" alt=""> </a>
+                        </div>
+                        <div class="team-content">
+                            <h4>{{d.nombre_Actividad}}</h4>
+                            <span class="desg">{{d.lugar_Actividad}} </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
+
             </div>
             {% endfor %}
         </div>

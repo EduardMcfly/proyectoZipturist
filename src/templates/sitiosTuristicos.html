@@ -1,5 +1,5 @@
 <!-- template para visualizar la galeria de los sitios turisticos -->
-{% extends 'Inicio.html' %}
+{% extends 'inicio.html' %}
 {% block content %}
 <div class="page-title" style="background-image: url(static/images/image.jpg)">
     <h1>Sitios Turísticos</h1>
@@ -10,21 +10,21 @@
             {% for d in data %}
             {% set urlImagenes = 'static/fotos_turismo/' %}
             <div class="col-lg-6 mb-5">
-            <div class="col-md-4 col-sm-6 single-team">
-                <div class="inner">
-                    <div class="team-img">
-                        <a   href="{{url_for('verSitio', id=d.id_sitiosT)}}"><img src="{{ urlImagenes }}{{ d.imagen_sitiosT }}" alt=""></a>
-                    </div>
-                    <div class="team-content">
-                        <h4>{{d.nombre_sitiosT}}</h4>
-                        <span class="desg">{{d.direccion_sitiosT}} </span>
+                <div class="col-md-4 col-sm-6 single-team">
+                    <div class="inner">
+                        <div class="team-img">
+                            <a href="{{url_for('verSitio', id=d.id_sitiosT)}}"><img
+                                    src="{{ urlImagenes }}{{ d.imagen_sitiosT }}" alt=""></a>
+                        </div>
+                        <div class="team-content">
+                            <h4>{{d.nombre_sitiosT}}</h4>
+                            <span class="desg">{{d.direccion_sitiosT}} </span>
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
             {% endfor %}
         </div>
     </div>
 </section>
 {% endblock %}
-
