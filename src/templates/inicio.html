@@ -1,4 +1,4 @@
-  <!-- Template base para modulo de visualización de sitios-->
+<!-- Template base para modulo de visualización de sitios-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/mainInicio.css') }}">
 
-      <!-- JS -->
+    <!-- JS -->
     <script src="static/js/jquery.js"></script>
     <script src="static/js/bootstrap.min.js"></script>
     <script src="static/js/owl.carousel.min.js"></script>
@@ -25,23 +25,24 @@
     <script src="static/js/main.js"></script>
 
     <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATa7H2AGDshZx-dGVhFMzI1jFphwJpVwE&callback=initMap">
-    </script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATa7H2AGDshZx-dGVhFMzI1jFphwJpVwE&callback=initMap">
+        </script>
 
 
-  </head>
+</head>
+
 <body class="homepage">
     <header id="header">
         <div class="top-bar">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 col-xs-12">
-                      
+
                     </div>
                 </div>
             </div>
         </div>
-          <!-- Barra de navegación-->
+        <!-- Barra de navegación-->
         <nav class="navbar navbar-inverse" role="banner">
             <div class="container">
                 <div class="navbar-header">
@@ -51,15 +52,17 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ url_for('inicio') }}"><img src='{{ url_for('static', filename='images/zt.png') }}' alt="logo"></a>
+                    <a class="navbar-brand" href="{{ url_for('inicio') }}"><img src='{{ url_for(' static',
+                            filename='images/zt.png' ) }}' alt="logo"></a>
                 </div>
                 <div class="collapse navbar-collapse navbar-right">
                     <ul class="nav navbar-nav">
-                        <li ><a href="{{ url_for('inicio') }}">Inicio</a></li>
-                        <li "><a href="{{ url_for('servicios') }}">¿Qué hacer en Zipaquirá?</a></li>
+                        <li><a href="{{ url_for('inicio') }}">Inicio</a></li>
+                        <li "><a href=" {{ url_for('servicios') }}">¿Qué hacer en Zipaquirá?</a></li>
                         <li class="dropdown">
-                            <a href="{{ url_for('sitiosTuristicos') }}" class="dropdown-toggle" data-toggle="dropdown"> Tipos de Sitio </a>
-                            <ul class="dropdown-menu"> 
+                            <a href="{{ url_for('sitiosTuristicos') }}" class="dropdown-toggle" data-toggle="dropdown">
+                                Tipos de Sitio </a>
+                            <ul class="dropdown-menu">
                                 <li><a href="{{ url_for('sitiosTuristicos') }}">Sitios Turísticos </a></li>
                                 <li><a href="{{ url_for('restaurantes') }}">Restaurantes</a></li>
                                 <li><a href="{{ url_for('hoteles') }}">Hoteles</a></li>
@@ -69,14 +72,14 @@
                             </ul>
                         </li>
                         <li><a href="{{ url_for('login') }}">Inicio Sesión</a></li>
-                   </ul>
+                    </ul>
                 </div>
             </div>
         </nav>
     </header>
     {% block content %}{% endblock %}
-      <!-- pie de pagínas -->
-   <footer id="footer" class="midnight-blue">
+    <!-- pie de pagínas -->
+    <footer id="footer" class="midnight-blue">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
@@ -92,4 +95,5 @@
         </div>
     </footer>
 </body>
+
 </html>

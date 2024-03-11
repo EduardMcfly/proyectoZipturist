@@ -1,5 +1,5 @@
 <!-- template para visualizar la galeria de las artesanias -->
-{% extends 'Inicio.html' %}
+{% extends 'inicio.html' %}
 {% block content %}
 <div class="page-title" style="background-image: url(static/images/image.jpg)">
     <h1>Artesanías</h1>
@@ -10,17 +10,18 @@
             {% for d in data %}
             {% set urlImagenes = 'static/fotos_turismo/' %}
             <div class="col-lg-6 mb-5">
-            <div class="col-md-4 col-sm-6 single-team">
-                <div class="inner">
-                    <div class="team-img">
-                        <a   href="{{url_for('verArtesania', id=d.id_artesanias)}}"> <img src="{{ urlImagenes }}{{ d.imagen_artesanias }}" alt=""></a>
-                    </div>
-                    <div class="team-content">
-                        <h4>{{d.nombre_artesanias}}</h4>
-                        <span class="desg">{{d.direccion_artesanias}} </span>
+                <div class="col-md-4 col-sm-6 single-team">
+                    <div class="inner">
+                        <div class="team-img">
+                            <a href="{{url_for('verArtesania', id=d.id_artesanias)}}"> <img
+                                    src="{{ urlImagenes }}{{ d.imagen_artesanias }}" alt=""></a>
+                        </div>
+                        <div class="team-content">
+                            <h4>{{d.nombre_artesanias}}</h4>
+                            <span class="desg">{{d.direccion_artesanias}} </span>
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
             {% endfor %}
         </div>
