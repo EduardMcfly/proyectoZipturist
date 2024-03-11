@@ -681,7 +681,7 @@ def centrosReligiosos():
     for record in myresultados3:
         centro.append(dict(zip(columnNames, record)))
     cursor.close()
-    return render_template('centrosReligiosos.html', data=centro)
+    return render_template('CentrosReligiosos.html', data=centro)
 
 #Función consulta de los sitios turisticos guardados  
 @app.route('/sitiosTuristicos')
